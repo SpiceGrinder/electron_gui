@@ -1,97 +1,61 @@
 // @flow
 import React, { Component } from 'react';
-import Keyboard from 'react-simple-keyboard';
 import { Link } from 'react-router-dom';
 import routes from '../constants/routes';
-import { Button } from 'antd';
-import './Home.css';
-import './index.css';
+import { Row, Col, Tabs } from 'antd';
+import CircleButton from './CircleButton';
+import InputField from './InputField';
+
+const styles = {
+  display: 'flex',
+  justifyContent: 'center'
+};
+
+const TabPane = Tabs.TabPane;
 
 export default class Home extends Component {
-    state = {
-    layoutName: "default",
-    input: ""
-  };
-
   onChange = input => {
-    this.setState({
-      input: input
-    });
-    console.log("Input changed", input);
+    console.log('Input changed', input);
   };
 
   onKeyPress = button => {
-    console.log("Button pressed", button);
-
-    /**
-     * If you want to handle the shift and caps lock buttons
-     */
-    if (button === "{shift}" || button === "{lock}") this.handleShift();
-  };
-
-  handleShift = () => {
-    let layoutName = this.state.layoutName;
-
-    this.setState({
-      layoutName: layoutName === "default" ? "shift" : "default"
-    });
-  };
-
-  onChangeInput = event => {
-    let input = event.target.value;
-    this.setState(
-      {
-        input: input
-      },
-      () => {
-        this.keyboard.setInput(input);
-      }
-    );
+    console.log('Button pressed', button);
   };
 
   render() {
     return (
-      <div>
-        <Button type="primary">Hello</Button>
-        <input
-          value={this.state.input}
-          placeholder={"Tap on the virtual keyboard to start"}
-          onChange={e => this.onChangeInput(e)}
-        />
-        <Keyboard
-          ref={r => (this.keyboard = r)}
-          onChange={input => this.onChange(input)}
-          onKeyPress={button => this.onKeyPress(button)}
-          theme={"hg-theme-default hg-layout-default myTheme"}
-          layoutName={this.state.layoutName}
-          layout={{
-            default: [
-              "` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
-              "{tab} q w e r t y u i o p [ ] \\",
-              "{lock} a s d f g h j k l ; ' {enter}",
-              "{shift} z x c v b n m , . / {shift}",
-              ".com @ {space}"
-            ],
-            shift: [
-              "~ ! @ # $ % ^ & * ( ) _ + {bksp}",
-              "{tab} Q W E R T Y U I O P { } |",
-              '{lock} A S D F G H J K L : " {enter}',
-              "{shift} Z X C V B N M < > ? {shift}",
-              ".com @ {space}"
-            ]
-          }}
-          buttonTheme={[
-            {
-              class: "hg-red",
-              buttons: "Q W E R T Y q w e r t y"
-            },
-            {
-              class: "hg-highlight",
-              buttons: "Q q"
-            }
-          ]}
-        />
-        <div>WTF</div>
+      <div style={{ height: '100%' }}>
+        <Tabs defaultActiveKey="1">
+          <TabPane tab="Main" key="1">
+            <Row type="flex" justify="center">
+              <Col>
+                <CircleButton text={'1'} />
+              </Col>
+            </Row>
+            <Row>
+              <Col span={12}>
+                <div style={styles}>
+                  <CircleButton text={'2'} />
+                </div>
+              </Col>
+              <Col span={12}>
+                <div style={styles}>
+                  <CircleButton text={'3'} />
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <InputField />
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tab="Setting" key="2">
+            <Row>
+              <Col>Setting</Col>
+            </Row>
+          </TabPane>
+        </Tabs>
       </div>
     );
   }
