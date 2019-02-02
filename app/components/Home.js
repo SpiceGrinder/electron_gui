@@ -5,6 +5,8 @@ import routes from '../constants/routes';
 import { Row, Col, Tabs } from 'antd';
 import CircleButton from './CircleButton';
 import InputField from './InputField';
+import Settings from './Settings';
+import Main from './Main';
 
 const styles = {
   display: 'flex',
@@ -27,33 +29,13 @@ export default class Home extends Component {
       <div style={{ height: '100%' }}>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Main" key="1">
-            <Row type="flex" justify="center">
-              <Col>
-                <CircleButton text={'1'} />
-              </Col>
-            </Row>
-            <Row>
-              <Col span={12}>
-                <div style={styles}>
-                  <CircleButton text={'2'} />
-                </div>
-              </Col>
-              <Col span={12}>
-                <div style={styles}>
-                  <CircleButton text={'3'} />
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <InputField />
-              </Col>
-            </Row>
+            <Main />
           </TabPane>
-          <TabPane tab="Setting" key="2">
-            <Row>
-              <Col>Setting</Col>
-            </Row>
+          <TabPane tab="History" key="2">
+            <div>History</div>
+          </TabPane>
+          <TabPane tab="Setting" key="3">
+            <Settings />
           </TabPane>
         </Tabs>
       </div>

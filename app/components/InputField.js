@@ -1,34 +1,34 @@
-import React, { Component } from 'react'
-import Keyboard from 'react-simple-keyboard'
-import { Input } from 'antd'
+import React, { Component } from 'react';
+import Keyboard from 'react-simple-keyboard';
+import { Input } from 'antd';
 
 export default class InputField extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state = { keyboardActive: false }
-    this.setWrapperRef = this.setWrapperRef.bind(this)
-    this.handleClickOutside = this.handleClickOutside.bind(this)
+    this.state = { keyboardActive: false };
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside)
+    document.addEventListener('mousedown', this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside)
+    document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
   /**
    * Set the wrapper ref
    */
   setWrapperRef(node) {
-    this.wrapperRef = node
+    this.wrapperRef = node;
   }
 
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState({ keyboardActive: false })
+      this.setState({ keyboardActive: false });
     }
   }
 
@@ -37,7 +37,7 @@ export default class InputField extends Component {
       <div ref={this.setWrapperRef}>
         <Input
           onClick={() => {
-            this.setState({ keyboardActive: true })
+            this.setState({ keyboardActive: true });
           }}
         />
         {this.state.keyboardActive ? (
@@ -47,6 +47,6 @@ export default class InputField extends Component {
           />
         ) : null}
       </div>
-    )
+    );
   }
 }
