@@ -29,3 +29,7 @@ input {
   box-shadow: 0px 0px 40px 5px rgba(255, 255, 0, 0.5);
   z-index: 1;
 }
+
+.spice-grinder {
+  background-color: red;
+}

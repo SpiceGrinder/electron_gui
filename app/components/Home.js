@@ -6,7 +6,7 @@ import { Row, Col, Tabs } from 'antd';
 import CircleButton from './CircleButton';
 import InputField from './InputField';
 import Settings from './Settings';
-import Main from './Main';
+import MainPage from './MainPage';
 
 const styles = {
   display: 'flex',
@@ -29,7 +29,7 @@ export default class Home extends Component {
       <div style={{ height: '100%' }}>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Main" key="1">
-            <Main />
+            <MainPage />
           </TabPane>
           <TabPane tab="History" key="2">
             <div>History</div>

@@ -2,41 +2,26 @@ import React from 'react';
 import { Row, Col, Card } from 'antd';
 
 const MainPageOne = props => {
+  const { spices } = props;
+
   return (
     <>
-      <Row gutter={10} style={{ margin: 10 }}>
-        <Col span={8}>
-          <Card title="Container 1" size="small">
-            <div>Salt</div>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Container 2" size="small">
-            <div>Pepper</div>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Container 3" size="small">
-            <div>Cinamon</div>
-          </Card>
-        </Col>
-      </Row>
-      <Row gutter={10} style={{ margin: 10 }}>
-        <Col span={8}>
-          <Card title="Container 4" size="small">
-            <div>Salt</div>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Container 5" size="small">
-            <div>Pepper</div>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Container 6" size="small">
-            <div>Cinamon</div>
-          </Card>
-        </Col>
+      <Row gutter={10} style={{ margin: 10 }} type="flex" justify="center">
+        {spices.map((spice, i) => {
+          const { selected, name } = spice;
+          const selectedStyle = selected ? { backgroundColor: '#1890ff' } : {};
+          return (
+            <Col key={name} span={6} style={{ margin: 5 }}>
+              <Card
+                className={'spice-card'}
+                style={selectedStyle}
+                onClick={() => props.onToggle(i)}
+              >
+                <div>{name}</div>
+              </Card>
+            </Col>
+          );
+        })}
       </Row>
     </>
   );
